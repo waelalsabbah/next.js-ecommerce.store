@@ -1,8 +1,8 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import style from './CheckOut.module.scss';
+import style from './GenerateButton.module.scss';
 
-export default function CheckOut() {
+export default function GenerateButton() {
   const router = useRouter();
   return (
     <div>
@@ -12,7 +12,7 @@ export default function CheckOut() {
         }}
       >
         {' '}
-        CheckOut
+        Generate
       </button>
     </div>
   );

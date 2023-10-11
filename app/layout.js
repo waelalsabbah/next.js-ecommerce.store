@@ -13,16 +13,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>
-          {' '}
-          <nav>
+        {' '}
+        <nav>
+          <div>
             <Link href="/">Home</Link>
             <Link href="/about">About</Link>
             <Link href="/products">Products</Link>
-          </nav>
-        </div>
-
-        {Math.floor(Math.random() * 10)}
+          </div>
+          {Math.floor(Math.random() * 10)}
+        </nav>
         {children}
       </body>
     </html>
