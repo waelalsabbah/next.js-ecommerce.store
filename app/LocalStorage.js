@@ -6,5 +6,7 @@ export default function LocalStorage() {
   useEffect(() => {
     setDarkMode(window.localStorage.getItem('darkMode'));
   }, []);
-  return <div>{darkMode ? darkMode : 'false'}</div>;
+  {
+    /*return <div>{darkMode ? darkMode : 'false'}</div>;*/
+  }
 }

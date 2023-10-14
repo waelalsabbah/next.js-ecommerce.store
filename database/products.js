@@ -1,11 +1,12 @@
 import 'server-only';
+import { $schema } from '../.eslintrc.cjs';
 
 const products = [
   {
     id: 1,
     title: 'iPhone 9',
     description: 'An apple mobile which is nothing like apple',
-    quantity: 0,
+
     price: 549,
   },
   {
@@ -13,7 +14,7 @@ const products = [
     title: 'iPhone X',
     description:
       'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...',
-    quantity: 0,
+
     price: 899,
   },
   {

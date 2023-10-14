@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import { getProduct } from '../../../database/products';
 import { getCookie } from '../../../util/cookies';
+import { parseJson } from '../../../util/json';
 import IncreaseQuantity from './IncreaseQuantity';
 
 export function generateMetaData({ params }) {
@@ -14,30 +15,36 @@ export function generateMetaData({ params }) {
 }
 
 export default function Product(props) {
-  const oneProduct = getProduct(Number(props.params.productId));
-  const productQuantity = getCookie('productsQuantities');
+  const product = getProduct(Number(props.params.productId));
+  const productsQuantitiesCookie = getCookie('productsQuantities');
 
-  const parsedIncreaseQuantity = JSON.parse(productQuantity);
+  const productQuantities = !productsQuantitiesCookie
+    ? []
+    : parseJson(productsQuantitiesCookie);
 
-  if (!oneProduct) {
+  const productQuantityToDisplay = productQuantities.find((productQuantity) => {
+    return productQuantity.id === product.id;
+  });
+
+  if (!product) {
     return notFound();
   }
 
   return (
     <div>
       My Product
-      <h1>{oneProduct.title}</h1>
+      <h1>{product.title}</h1>
       <Image
-        src={`/images/${oneProduct.title}.jpg`}
-        alt={oneProduct.title}
+        src={`/images/${product.title}.jpg`}
+        alt={product.title}
         width={200}
         height={200}
       />
-      {oneProduct.description}
+      {product.description}
       <br />
-      price:{oneProduct.price}
-      <div>{parsedIncreaseQuantity[0].quantity}</div>
-      <IncreaseQuantity />
+      price:{product.price}
+      <div>{productQuantityToDisplay?.quantity}</div>
+      <IncreaseQuantity productId={product.id} />
     </div>
   );
 }
